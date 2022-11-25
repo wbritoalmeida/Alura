@@ -1,0 +1,39 @@
+<canvas width="600" height="400" id="tela"></canvas><br />
+Escolhar uma Cor:
+<input type="color" name="selecionarCor" id="selecionarCor" />
+<a href="#" id="btnApagarTela"
+  ><div class="txtButtonClear">Apagar a Tela</div>
+</a>
+<script>
+  const selecionarCor = document.getElementById('selecionarCor')
+  const btnApagarTela = document.getElementById('btnApagarTela')
+  var tela = document.querySelector('canvas')
+  var pincel = tela.getContext('2d')
+  var bgColorTela = 'lightgray'
+  var raio = 10
+
+  btnApagarTela.onclick = function () {
+    pincel.clearRect(0, 0, 600, 400)
+    pincel.fillStyle = bgColorTela
+    pincel.fillRect(0, 0, 600, 400)
+  }
+
+  function desenharCirculo(pX, pY) {
+    pincel.beginPath()
+    pincel.arc(pX, pY, raio, 0, 2 * 3.14)
+    pincel.fillStyle = selecionarCor.value
+    pincel.fill()
+  }
+
+  tela.onmousemove = function (e) {
+    if (e.buttons == 1) {
+      desenharCirculo(e.offsetX, e.offsetY)
+    }
+  }
+
+  tela.onmouseup = function (e) {
+    desenharCirculo(e.offsetX, e.offsetY)
+  }
+
+  btnApagarTela.onclick()
+</script>

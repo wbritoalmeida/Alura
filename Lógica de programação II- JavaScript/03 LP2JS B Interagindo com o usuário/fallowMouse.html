@@ -1,0 +1,41 @@
+<!-- Repetir código não rola, não é mesmo -->
+
+<canvas
+  width="600"
+  height="400"
+  onmousemove="mouseMove(event)"
+  onmouseout="mouseOut()"
+>
+</canvas>
+
+<script>
+  var tela = document.querySelector('canvas')
+  var pincel = tela.getContext('2d')
+
+  function animarQuadrado(vx, vy, vcor) {
+    pincel.clearRect(0, 0, 600, 400)
+
+    pincel.fillStyle = vcor
+    pincel.fillRect(vx, vy, 50, 50)
+    pincel.fillStroke = 'black'
+    pincel.strokeRect(vx, vy, 50, 50)
+  }
+
+  function desenhaQuadrado(vx, vy, vcor) {
+    pincel.fillStyle = vcor
+    pincel.fillRect(vx, vy, 50, 50)
+    pincel.fillStroke = 'black'
+    pincel.strokeRect(vx, vy, 50, 50)
+  }
+
+  function mouseMove(e) {
+    var x = e.clientX
+    var y = e.clientY
+    animarQuadrado(x - 25, y - 25, 'green')
+    //var coord = 'Mouse: (' + x + ',' + y + ')'
+    //document.getElementById('coord').innerHTML = coord
+  }
+  function mouseOut() {
+    animarQuadrado(300, 200, 'green')
+  }
+</script>

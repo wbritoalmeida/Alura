@@ -1,0 +1,31 @@
+<canvas width="600" height="400"></canvas>
+
+<script>
+  var tela = document.querySelector('canvas')
+  var pincel = tela.getContext('2d')
+
+  //Corpo da Bandeira
+  pincel.fillStyle = 'green' //Inserindo a cor de fundo da Bandeira
+  pincel.fillRect(0, 0, 600, 400) //Criando o corpo da bandeira
+
+  //Losangulo dourado da bandeira
+  pincel.beginPath()
+  pincel.moveTo(300, 50) // movendo para o inicio, a ponta que do meio de cima (12horas)
+
+  pincel.lineTo(550, 200) //Desenhando linha até ponta direita do losangulo
+  pincel.lineTo(300, 350) //Desenhando linha até ponta do meio inferior do losangulo
+  pincel.lineTo(50, 200) // Desenhando linha até ponta esquerda do losangulo
+
+  pincel.fillStyle = 'yellow' // Inserindo a cor amarela
+  pincel.fill() // Preenchendo o desenho
+
+  //Circulo central da Bandeira
+  pincel.beginPath() //reinciando
+  //Os 2 primeiros parâmetros são as coordenadas X e Y.(300,200....
+  //O 3º parâmetro é o valor do raio(.., 100.
+  //O 4º e o 5º parâmetros definem o ângulo inicial e final do circulo
+  pincel.arc(300, 200, 100, 0, 2 * 3.14)
+
+  pincel.fillStyle = 'darkblue'
+  pincel.fill()
+</script>

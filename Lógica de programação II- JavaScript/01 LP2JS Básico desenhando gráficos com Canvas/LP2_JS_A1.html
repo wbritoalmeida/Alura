@@ -1,0 +1,38 @@
+<!--Programa.html-->
+
+<canvas width="600" height="400"></canvas>
+<script>
+  //Estanciando objeto tela tag canvas
+  var tela = document.querySelector('canvas')
+  //Criando objeto pincel
+  var pincel = tela.getContext('2d') // "setando" como 2d
+
+  //Defindo a cor do pincel
+  pincel.fillStyle = 'lightgrey'
+  //Criando um retangulo com o pincel para ficar como fundo
+  pincel.fillRect(0, 0, 600, 400)
+
+  //Alterando a cor do pincel
+  pincel.fillStyle = 'green'
+  //criando outro retangulo
+  pincel.fillRect(0, 0, 200, 400)
+
+  pincel.fillStyle = 'red'
+  //criando outro retangulo
+  pincel.fillRect(400, 0, 600, 400)
+
+  pincel.fillStyle = 'yellow'
+  //Criando/iniciando um desenho - Triangulo
+  pincel.beginPath()
+
+  pincel.moveTo(300, 200) //movendo o ponto inicial do pincel
+  pincel.lineTo(200, 400) //criando um linha que inicia ponto inserido pelo moveTo até as cordenadas informadas.
+  pincel.lineTo(400, 400) //Criando outra linha agora do ponto inserido do ultimo lineTo.
+  pincel.fill() //preenchendo o desenho]
+
+  //Criando/iniciando um desenho - Circulo
+  pincel.fillStyle = 'blue'
+  pincel.beginPath() // resetando a posição do pincel
+  pincel.arc(300, 200, 50, 0, 2 * 3) // Posicionando(300, 200), defindo tamanho do circulo.
+  pincel.fill()
+</script>

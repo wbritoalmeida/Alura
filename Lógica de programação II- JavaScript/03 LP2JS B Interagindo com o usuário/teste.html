@@ -1,0 +1,27 @@
+<canvas width="600" height="400"></canvas>
+<div class="display" id="display">aqui</div>
+<script>
+  const tela = document.querySelector('canvas')
+  var pincel = tela.getContext('2d')
+  const display = document.getElementById('display')
+  //function teste(vamosVer) {
+  // console.log(vamosVer)
+  //}
+
+  pincel.fillStyle = 'gray'
+  pincel.fillRect(0, 0, 600, 400)
+  function desenhaCirculo(event) {
+    var x = event.offsetX
+    var y = event.offsetY
+    //console.log(event)
+    display.innerHTML = 'Posição X = ' + x + '<br>Posição Y = ' + y
+
+    pincel.beginPath()
+    pincel.fillStyle = 'orange'
+    pincel.arc(x, y, 10, 0, 2 * 3.14)
+    pincel.fill()
+  }
+
+  tela.onmouseup = desenhaCirculo
+  //document.onclick = mostrarNoDisplay
+</script>

@@ -1,0 +1,58 @@
+<canvas width="600" height="400"></canvas>
+
+<script>
+  var tela = document.querySelector('canvas')
+  var pincel = tela.getContext('2d')
+  // posição do alvo
+  var pAlvoX, pAlvoY
+
+  function limparTela() {
+    pincel.clearRect(0, 0, 600, 400)
+    pincel.fillStyle = 'lightgray'
+    pincel.fillRect(0, 0, 600, 400)
+  }
+
+  function desenhaCirculo(x, y, raio, cor) {
+    pincel.fillStyle = cor
+    pincel.beginPath()
+    pincel.arc(x, y, raio, 0, 2 * Math.PI)
+    pincel.fill()
+  }
+
+  function desenharAlvo(x, y) {
+    desenhaCirculo(x, y, 30, 'red')
+    desenhaCirculo(x, y, 20, 'white')
+    desenhaCirculo(x, y, 10, 'red')
+  }
+
+  function sorteiaPosicao(maximo) {
+    return Math.floor(Math.random() * maximo)
+  }
+
+  limparTela()
+  desenharAlvo(300, 200)
+
+  setInterval(function () {
+    limparTela()
+    pAlvoX = sorteiaPosicao(600)
+    pAlvoY = sorteiaPosicao(400)
+    desenharAlvo(pAlvoX, pAlvoY)
+  }, 1000)
+
+  tela.onclick = function (e) {
+    var x = e.offsetX
+    var y = e.offsetY
+
+    desenhaCirculo(x, y, 6.5, 'gray')
+    desenhaCirculo(x - 0.5, y + 0.2, 5, 'black')
+
+    if (
+      x <= pAlvoX + 10 &&
+      x >= pAlvoX - 10 &&
+      y <= pAlvoY + 10 &&
+      y >= pAlvoY - 10
+    ) {
+      alert('Acertou!')
+    }
+  }
+</script>

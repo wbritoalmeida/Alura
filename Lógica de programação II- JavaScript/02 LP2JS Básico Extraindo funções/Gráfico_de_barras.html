@@ -1,0 +1,75 @@
+<canvas width="600" height="400"></canvas>
+
+<script>
+  //Testes
+  var serie2015 = [55, 25, 20, 5]
+  var serie2016 = [65, 20, 13, 2]
+  var cores = ['blue', 'green', 'yellow', 'red']
+</script>
+
+<script>
+  var tela = document.querySelector('canvas')
+  var pincel = tela.getContext('2d')
+
+  //desenha um retangulo na posição informada
+  function desenhaRetangulo(x, y, largura, altura, cor) {
+    pincel.fillStyle = cor
+    pincel.fillRect(x, y, largura, altura)
+    pincel.strokeStyle = 'black'
+    pincel.strokeRect(x, y, largura, altura)
+  }
+
+  function escreverTexto(x, y, texto) {
+    var tela = document.querySelector('canvas')
+    var pincel = tela.getContext('2d')
+
+    pincel.font = '15px Georgia'
+    pincel.fillStyle = 'black'
+    pincel.fillText(texto, x, y)
+  }
+
+  function desenhaFolhaDeGrafico(serieDados) {
+    var lx = tela.width
+    var ly = tela.height - 20
+    var passoly = ly
+    var maior = 10
+    var passo = (ly - 10) / 11
+    var somaPassoDisplay = 0
+    var passoDisplay = 1
+    //pegar o maior numero
+    for (let cont = 0; cont < serieDados.length; cont++) {
+      if (maior < serieDados[cont]) {
+        maior = Math.ceil(serieDados[cont] / 10) * 10
+        passoDisplay = maior / 10
+      }
+    }
+
+    //desenhar as linhas
+    pincel.beginPath()
+    pincel.strokeStyle = 'rgba(100,100,100,0.2)'
+    pincel.lineWidth = 1
+
+    for (let cont = 0; cont < 10; cont++) {
+      passoly -= passo
+      pincel.moveTo(0, passoly)
+      pincel.lineTo(lx, passoly)
+
+      pincel.stroke()
+      somaPassoDisplay += passoDisplay
+      escreverTexto(0, passoly - 10, '' + somaPassoDisplay)
+    }
+
+    pincel.beginPath()
+    pincel.moveTo(0, ly)
+    pincel.lineTo(lx, ly)
+    pincel.lineTo(lx, passoly - passoly / 2)
+    pincel.strokeStyle = 'black'
+    pincel.lineWidth = 3
+    pincel.stroke()
+  }
+
+  // aqui vem mais
+  desenhaFolhaDeGrafico(serie2015)
+  desenhaBarra(50, 50, serie2015, cores, '2015')
+  desenhaBarra(150, 50, serie2016, cores, '2016')
+</script>

@@ -1,0 +1,63 @@
+<canvas width="600" height="400"></canvas>
+<div class="display" id="display">Cor= Azul</div>
+<script>
+  var tela = document.querySelector('canvas')
+  var pincel = tela.getContext('2d')
+  var display = document.getElementById('display')
+
+  //variavel criada para ser usada pra informar o usuário
+  var CorBolinhaDisplay = ['Azul', 'Vermelho', 'Verde']
+  var chave = 0
+  //function teste(vamosVer) {
+  // console.log(vamosVer)
+  //}
+
+  //tornando a tela visivel
+  pincel.fillStyle = 'gray'
+  pincel.fillRect(0, 0, 600, 400)
+
+  function desenhaCirculo(event) {
+    var CorDabolinha = ['blue', 'red', 'green']
+    var x = event.offsetX //Pra reiventar a roda, já existe um atributto que informa a posição sem precisar calcular
+    var y = event.offsetY //Pra reiventar a roda, já existe um atributto que informa a posição sem precisar calcular
+    var raio = 10
+
+    //Aqui por quis inserir algumas informações ao usuário
+    display.innerHTML =
+      'Cor= ' +
+      CorBolinhaDisplay[chave] +
+      '<BR>Posição X = ' +
+      x +
+      '<br>Posição Y = ' +
+      y
+    //primerio é inserido a informação de cor usando o array CorBolinhaDisplay
+    //Depois a posição, bem semelhante ao do instrutor só que em vez de usar o alert, será inserido na tag div, junto com a informação de cor
+
+    pincel.beginPath()
+
+    pincel.fillStyle = CorDabolinha[chave]
+    //console.log(CoresPbolinha[chave])
+    if (event.buttons == 1) {
+      // console.log(event)
+      pincel.arc(x, y, raio, 0, 2 * 3.14)
+      pincel.fill()
+    }
+  }
+
+  function escolherCor(event) {
+    //Anulando o menu do botão direito do mouse
+    event.stopPropagation()
+    event.preventDefault()
+
+    //achei melhor usar o if else para evitar um soma desnecessária
+    if (chave == 2) {
+      chave = 0
+    } else {
+      chave++
+    }
+    //É inserido a informação de cor na div usando o array CorBolinhaDisplay, assim o usuário sabe que cor está configurada
+    display.innerHTML = 'Cor= ' + CorBolinhaDisplay[chave]
+  }
+  tela.onmousemove = desenhaCirculo
+  tela.oncontextmenu = escolherCor
+</script>

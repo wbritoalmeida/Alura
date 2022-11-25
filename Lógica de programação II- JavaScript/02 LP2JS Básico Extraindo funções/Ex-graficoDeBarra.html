@@ -1,0 +1,28 @@
+<canvas width="600" height="400"></canvas>
+
+<script>
+  var tela = document.querySelector('canvas')
+  var pincel = tela.getContext('2d')
+  var serie2015 = [50, 25, 20, 5]
+  var serie2016 = [65, 20, 13, 2]
+  var cfgcores = ['blue', 'green', 'yellow', 'red']
+
+  pincel.fillStyle = 'lightgray'
+  pincel.fillRect(0, 0, 600, 400)
+
+  function desenhaQuadrado(vx, vy, tamanho, cor) {
+    pincel.fillStyle = cor
+    pincel.fillRect(vx, vy, tamanho, tamanho)
+
+    pincel.strokeStyle = 'black'
+    pincel.strokeRect(vx, vy, tamanho, tamanho)
+  }
+
+  function desenharTexto(vx, vy, texto) {
+    pincel.font = '15px Georgia'
+    pincel.fillStyle = 'Black'
+    pincel.fillText(texto, vx, vy)
+  }
+
+  function desenhaBarra(vx, vy, serie, cores, texto) {}
+</script>

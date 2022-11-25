@@ -1,0 +1,41 @@
+<!-- Repetir código não rola, não é mesmo -->
+
+<canvas  width="600" height="400" </canvas>
+
+<div id="teste">ok</div>
+
+<script>
+  function desenhaQuadrado(vx, vy, vcor) {
+    var tela = document.querySelector('canvas')
+    var pincel = tela.getContext('2d')
+
+    pincel.fillStyle = vcor
+    pincel.fillRect(vx, vy, 50, 50)
+    pincel.strokeStyle = 'white'
+    pincel.strokeRect(vx, vy, 50, 50)
+  }
+
+//Versão FOR
+
+for (let x = 0; x < 600; x+=50) {
+  desenhaQuadrado(x, 0, "rgb(0,"+ x / 2+ ", 0)")
+    desenhaQuadrado(x, 50, "rgb("+ x / 2+ ", 0, 0)")
+    desenhaQuadrado(x, 100, "rgb(0, 0, "+ x / 2+ ")")
+}
+
+  /* Versão em While
+  
+  var x = 0
+  while (x < 600) {
+    
+    desenhaQuadrado(x, 0, "rgb(0,"+ x / 2+ ", 0)")
+    desenhaQuadrado(x, 50, "rgb("+ x / 2+ ", 0, 0)")
+    desenhaQuadrado(x, 100, "rgb(0, 0, "+ x / 2+ ")")
+    x+=50
+
+  }*/
+
+  /*desenhaQuadrado(0, 0, 'green')
+  desenhaQuadrado(50, 0, 'green')
+  desenhaQuadrado(100, 0, 'green')*/
+</script>
